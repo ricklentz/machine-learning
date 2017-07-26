@@ -11950,6 +11950,9 @@ Standard deviation of prices: $165,171.13
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>A home with more bedrooms (RM) would be worth more than a home with fewer bedrooms, a higher LSTAT value correlates with lower home values, and a lower student to teacher ratio correlates with higher home values.</p>
+<p>Parents that value their children's education would likely pay more for a home where their child receives more attention (thus lower PTRATIO creates more demand, and therefore higher price pressure).</p>
+<p>LSTAT values are likely to adverstly impact demain (thus higher LSTAT creates less price pressure due to lower smaller max morgages).</p>
+<p>A home with higher RM is assumed to be bigger and more valuable.  Market prices are expected to be higher for homes with more rooms.</p>
 
 </div>
 </div>
@@ -12179,7 +12182,7 @@ Standard deviation of prices: $165,171.13
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong></p>
-<p>Don't evaluate your model with your training data.  K-fold and other forms of cross validation are useful during model development.  Overfitting becomes the least of our worries if we break this important methodology rule.</p>
+<p>We split the data to avoid overfitting (we never evaluate our models with training data).  K-fold and other forms of cross validation are useful for splitting the training and validation data.</p>
 
 </div>
 </div>
@@ -13762,7 +13765,7 @@ T0RE4oaSnoiIxA0lPRERiRtKeiIiEjeU9EREJG4o6YmISNz4X9gQnFINgT2LAAAAAElFTkSuQmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong></p>
-<p>With a depth of one, the model suffers from high bias. With a depth of 10, the model suffers from high variance (overfitting). The overfitting is observed as the training score increases while the validation score decreases.</p>
+<p>With a depth of one, the model suffers from high bias (and has low training and validation scores). With a depth of 10, the model suffers from high variance (overfitting). The overfitting is observed as the training score increases (towards 1) while the validation score decreases (from .8 to .7).</p>
 
 </div>
 </div>
@@ -13874,9 +13877,8 @@ T0RE4oaSnoiIxA0lPRERiRtKeiIiEjeU9EREJG4o6YmISNz4X9gQnFINgT2LAAAAAElFTkSuQmCC
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong></p>
-<p>Cross validation (CV) provides a means of evaluating estimator performance. We typically want models that generalize well to unseen data, so we split the data into k folds or groups. K-fold CV provides an optimal approach to the loss of information when using the simple hold out method due to not being able to train on the holdout set.</p>
-<p>For each k fold, the model is trained using k-1 folds as training data. Performance is measured using the holdout set. The score is averaged based on the individual fold performance measures.</p>
-<p>The <strong>key benefit of k-fold CV is that all data contribute to towards characterizing the model's performance</strong>.</p>
+<p>Cross validation (CV) provides a means of evaluating estimator performance by splitting the data into 10 groups of near equal size. We typically want models that generalize well to unseen data, so we split the data into k folds or groups. K-fold CV provides an optimal approach to the loss of information when using the simple hold out method due to not being able to train on the holdout set.</p>
+<p>For each k fold, the model is trained using k-1 folds as training data, thus using each set of data once for each run. Performance is measured using the holdout set. The score is averaged based on the individual fold performance measures.  The <strong>key benefit of k-fold CV is that all data contribute to towards characterizing the model's performance</strong>.</p>
 
 </div>
 </div>
@@ -14024,7 +14026,7 @@ Parameter &#39;max_depth&#39; is 5 for the optimal model.
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong> Hint: </strong> The answer comes from the output of the code snipped above.</p>
 <p><strong>Answer: </strong>
-Parameter 'max_depth' is 5 for the optimal model.</p>
+Parameter 'max_depth' is 5 for the optimal model and this is very close to 4 that I visually picked earlier.</p>
 
 </div>
 </div>
@@ -14116,10 +14118,17 @@ Predicted selling price for Client 3&#39;s home: $927,500.00
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong></p>
-<p>Predicted selling price for Client 1's home: $419,700.00
-Predicted selling price for Client 2's home: $287,100.00
-Predicted selling price for Client 3's home: $927,500.00</p>
+<p>Predicted selling price for Client 1s home: $419,700.00</p>
+<p>Predicted selling price for Client 2s home: $287,100.00</p>
+<p>Predicted selling price for Client 3s home: $927,500.00</p>
 <p>Yes, given the relationship intuitively described earlier for lower home prices (high poverty level, high student-teacher ratio, low bedroom count).</p>
+<p>In reviewing the statistics for Boston housing dataset, we see that all predicted values are within the max and min range.  The average house prediction is close to the mean and median price.  The high end home's price is less than the maximum price and the low end home is greater than the minimum price.</p>
+<p>(Statistics listed again for easy reference):</p>
+<p>Minimum price: $105,000.00</p>
+<p>Maximum price: $1,024,800.00</p>
+<p>Mean price: $454,342.94</p>
+<p>Median price $438,900.00</p>
+<p>Standard deviation of prices: $165,171.13</p>
 
 </div>
 </div>
