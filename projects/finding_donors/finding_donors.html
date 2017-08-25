@@ -14343,10 +14343,18 @@ AEBvaIQAAAAAvaERAgAAAPTG/wcZRvvcxpZZvAAAAABJRU5ErkJggg==
 <span class="kn">from</span> <span class="nn">sklearn.cross_validation</span> <span class="kn">import</span> <span class="n">train_test_split</span>
 
 <span class="c1"># Split the &#39;features&#39; and &#39;income&#39; data into training and testing sets</span>
+
+<span class="c1"># If the dataset is unbalanced(some classes are overrepresented compared to others) we could address the unbalanced nature of our data set using Stratified K-Fold and Stratified Shuffle Split Cross validation, as stratification is preserving the preserving the percentage of samples for each class.</span>
+<span class="c1"># http://scikit-learn.org/stable/modules/generated/sklearn.model_selection.StratifiedShuffleSplit.html</span>
+<span class="c1"># http://scikit-learn.org/stable/modules/generated/sklearn.model_selection.StratifiedKFold.html</span>
+
+<span class="c1"># As for the initial train test split you can obtain stratification by simply using stratify = income:</span>
+    
 <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">features_final</span><span class="p">,</span> 
                                                     <span class="n">income</span><span class="p">,</span> 
                                                     <span class="n">test_size</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span> 
-                                                    <span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+                                                    <span class="n">random_state</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
+                                                   <span class="n">stratify</span> <span class="o">=</span> <span class="n">income</span><span class="p">)</span>
 
 <span class="c1"># Show the results of the split</span>
 <span class="k">print</span> <span class="s2">&quot;Training set has {} samples.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
@@ -14468,6 +14476,26 @@ It is a ratio of true positives(words classified as spam, and which are actually
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Pro-Tip-1:-Follow-the-Yellow-Brick...">Pro Tip 1: Follow the Yellow Brick...<a class="anchor-link" href="#Pro-Tip-1:-Follow-the-Yellow-Brick...">&#182;</a></h4><p>When choosing which algorithm to use this interactive map provides a good starting point: 
+<a href="http://scikit-learn.org/stable/tutorial/machine_learning_map/">http://scikit-learn.org/stable/tutorial/machine_learning_map/</a>
+<img src="https://udacity-reviews-uploads.s3.amazonaws.com/_attachments/372/1503606733/cheat-sheet.PNG"></p>
+<h4 id="Pro-Tip-2:-Xgboost,-one-of-Kaggle&#8217;s-top-algorithms.">Pro Tip 2: Xgboost, one of Kaggle&#8217;s top algorithms.<a class="anchor-link" href="#Pro-Tip-2:-Xgboost,-one-of-Kaggle&#8217;s-top-algorithms.">&#182;</a></h4><p>In the recent years one algorithm emerged as favourite in the machine learning community, it is actually one of the most used in Kaggle: Xgboost.
+Here you can find an informative discussion on why that is the case: <a href="https://www.quora.com/Why-is-xgboost-given-so-much-less-attention-than-deep-learning-despite-its-ubiquity-in-winning-Kaggle-solutions">https://www.quora.com/Why-is-xgboost-given-so-much-less-attention-than-deep-learning-despite-its-ubiquity-in-winning-Kaggle-solutions</a>
+The algorithm is not available sci-kit learn, here is how you can start working with it:
+<a href="http://machinelearningmastery.com/develop-first-xgboost-model-python-scikit-learn/">http://machinelearningmastery.com/develop-first-xgboost-model-python-scikit-learn/</a></p>
+<h4 id="Pro-Tip-2:-Pipelines">Pro Tip 2: Pipelines<a class="anchor-link" href="#Pro-Tip-2:-Pipelines">&#182;</a></h4><p>You could actually go well beyond grid search and implement ‘pipelines’ where the whole machine learning process becomes 'grid-searchable' and you can parameterize and search the whole process though cross validation.
+<a href="http://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html">http://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html</a>
+And yes you can try out several algorithms automatically as well too! Watch out though this is pretty advanced stuff, here is a great, informative, top notch tutorial from Zac Sewart!
+<a href="http://zacstewart.com/2014/08/05/pipelines-of-featureunions-of-pipelines.html">http://zacstewart.com/2014/08/05/pipelines-of-featureunions-of-pipelines.html</a></p>
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
