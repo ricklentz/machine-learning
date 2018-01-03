@@ -104,41 +104,6 @@ class LearningAgent(Agent):
         if(self.learning == False):
             return random.choice(self.valid_actions)
 
-        # # Collect data about the environment
-        # waypoint = self.planner.next_waypoint() # The next waypoint 
-        # inputs = self.env.sense(self)           # Visual input - intersection light and traffic
-        # deadline = self.env.get_deadline(self)  # Remaining deadline
-        
-        # # Here are logical conditions needed for safety and efficiency
-        # light = 'green' if (self.intersections[location].state and heading[1] != 0) or ((not self.intersections[location].state) and heading[0] != 0) else 'red'       
-        # # Agent wants to move forward:
-        # if waypoint == 'forward':
-        #     if light == 'green': 
-        #         if inputs['left'] == 'forward' or inputs['right'] == 'forward': # Cross traffic
-        #             action = None
-        #         elif:
-        #             action = 'forward'
-        #     elif:
-        #         action = None
-        
-        # # Agent wants to move left:
-        # elif waypoint == 'left':
-        #     if light == 'green': 
-        #         if inputs['left'] == 'forward' or inputs['right'] == 'forward': # Cross traffic
-        #             action = None
-        #         elif inputs['oncoming'] == 'right': # Oncoming car turning right
-        #             action = None
-        #         elif:
-        #             action = 'left'
-
-        # # Agent wants to move right:
-        # elif waypoint == 'right':
-        #     if light == 'green':
-        #         if inputs['left'] == 'forward': # Cross traffic
-        #             action = None
-        #         else: # Valid move!
-        #             action == 'right'
-
 
         # When learning, choose a random action with 'epsilon' probability
         if self.epsilon > random.random():
@@ -163,8 +128,9 @@ class LearningAgent(Agent):
         # When learning, implement the value iteration update rule
         #   Use only the learning rate 'alpha' (do not use the discount factor 'gamma')
 
-        historical_value = self.Q[state][action]
+        
         if self.learning:
+            historical_value = self.Q[state][action]
             self.Q[state][action] = self.alpha*(reward) + (1-self.alpha) * historical_value 
 
 
@@ -198,7 +164,7 @@ def run():
     #   learning   - set to True to force the driving agent to use Q-learning
     #    * epsilon - continuous value for the exploration factor, default is 1
     #    * alpha   - continuous value for the learning rate, default is 0.5
-    agent = env.create_agent(LearningAgent,learning=True,alpha=.995,epsilon=30)
+    agent = env.create_agent(LearningAgent,learning=False,alpha=.99,epsilon=1)
     
     ##############
     # Follow the driving agent
